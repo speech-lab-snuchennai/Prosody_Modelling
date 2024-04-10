@@ -15,7 +15,7 @@ To use this project, you need to clone the repository and install the required d
 ### Clone the Repository
 
 ```bash
-git clone [https://github.com/your-username/project-name.git](https://github.com/speech-lab-snuchennai/Prosody_Modelling)
+git clone https://github.com/speech-lab-snuchennai/Prosody_Modelling
 cd project-name
 ```
 ### Installing Dependencies
