@@ -1,0 +1,21 @@
+#!/bin/tcsh -f
+
+if ($# != 2) then
+	echo "arg1 - file1.txt"
+	echo "arg2 - english_map"
+	exit(-1)
+endif
+tr -s '[:blank:]' '0' <$1 >word_out
+set start = 1
+set count = `cat word_out |wc -l`
+
+while ($start <= $count)
+	set phn1 = `cat word_out |head -$start |tail -1`
+	#echo $phn1
+	set phn = `grep -w $phn1 $2`
+	echo $phn >>data/out1
+	@ start++
+end
+cat data/out1 | cut -d " " -f2 >>data/word.lab
+echo "0" >>data/word.lab
+	

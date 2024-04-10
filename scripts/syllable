@@ -1,0 +1,28 @@
+#!/bin/tcsh -f
+
+if ($# != 1) then
+	echo "Arg1 --> temp_syl.lab" #syllable segmentation lab file having start and end timing
+	exit(-1)
+endif
+
+set num_ch = `cat $1 |wc -l`
+set st = 1
+
+while ($st <= $num_ch)
+	set line = `cat $1 |head -$st |tail -1`
+	#echo $line
+	set start_samples = `echo $line | cut -d " " -f1`
+	#echo $start_samples
+	set end_samples = `echo $line | cut -d " " -f2`
+	#echo $end_samples
+	set ch = `echo $line | cut -d " " -f3`
+	#echo $ch
+	if (($ch != SIL) && ($st <= $num_ch - 1)) then
+		echo $start_samples $end_samples $ch >>data/temp_syl_syl.lab
+	endif
+	@ st++
+
+end
+
+	
+

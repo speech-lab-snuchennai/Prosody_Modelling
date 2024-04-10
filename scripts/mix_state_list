@@ -1,0 +1,16 @@
+#!/bin/tcsh -f
+if($# != 1) then
+        echo "argument 1 = wordlist"
+        exit(-1)
+endif
+
+set i = 1
+set lines = `cat $1 | wc -l`
+
+while ($i <= $lines)
+	set line = `cat $1 | head -$i | tail -1`
+	set mix = 2
+	set state = 3
+	echo $line $mix $state
+	@ i++
+end

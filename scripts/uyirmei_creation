@@ -1,0 +1,27 @@
+#!/bin/tcsh -f
+
+if ($# != 2) then
+	echo "arg1-->uyir list"
+	echo "arg2-->mei list"
+exit(-1)
+endif
+
+#rm lists/phoneset_uyirmei
+echo "check the uyir & mei list"
+
+set start = 1
+set cnt = `cat $2 |wc -l`
+
+while ($start <= $cnt)
+	set m_phn = `cat $2 |head -$start|tail -1`
+	set start1 = 1
+	set cnt1 = `cat $1|wc -l`
+	while ($start1 <= $cnt1)
+		set u_phn = `cat $1 |head -$start1|tail -1`
+		echo "$m_phn$u_phn" #>> lists/phoneset_uyirmei
+	@ start1++
+	end
+@ start++
+end
+	
+

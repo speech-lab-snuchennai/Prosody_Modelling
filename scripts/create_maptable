@@ -1,0 +1,19 @@
+#!/bin/tcsh -f
+
+if($# != 1) then
+        echo "argument 1 = wavelist"
+        exit(-1)
+endif
+
+#rm list/maptable
+set i = 1
+set tot = `cat $1 | wc -l`
+while ($i <= $tot)
+
+	set a = `cat $1 | head -$i | tail -1`
+	set b = `cat $1 | head -$i | tail -1 | cut -d "." -f1`
+	
+	echo $a $b".mfc" >> data/maptable
+
+@ i++
+end

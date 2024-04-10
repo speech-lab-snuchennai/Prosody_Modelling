@@ -1,0 +1,24 @@
+#!/bin/tcsh -f
+if($# != 1) then
+        echo "argument 1 = lab_list"
+       
+endif
+
+        set lines = `cat $1 | wc -l`
+        set m = 1
+echo '#''!''MLF''!''#'
+
+while ($m <= $lines)
+        set lab = `cat $1| head -$m | tail -1`
+        echo '"'$lab'"'
+	set lines_lab = `cat $lab | wc -l`
+	
+	set k = 1
+	while ($k <= $lines_lab)
+		set word = `cat $lab | head -$k | tail -1 | cut -d " " -f3`
+		echo $word
+	@ k++
+end
+echo "."
+@ m++
+end

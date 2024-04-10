@@ -1,0 +1,78 @@
+#!/bin/tcsh -f
+
+if ($# != 2) then	
+       	echo "   Argument1 --> file for phonetic transcription"
+	echo "   Argument2 --> phone_list"
+       exit(-1)
+endif
+
+set num_words = `cat $1 |wc -w`
+set num_phones = `cat $2 |wc -l`
+
+set word_start = 1
+while ($word_start <= $num_words)
+	set word = `cat $1 | cut -d " " -f$word_start`
+	if ($word != SIL || $word != MSIL || $word != LSIL) then
+	#echo $word
+	set num = `echo $word | wc -c`
+	#echo $num
+	@ num_char = $num - 1
+	#echo $num_char
+	
+	set phone_start1 = 1
+	while ($phone_start1 <= $num_char)
+		@ t = $phone_start1 + 1
+		@ t1 = $phone_start1 + 2
+		@ t2 = $phone_start1 + 3
+		@ t3 = $phone_start1 + 4
+		@ t4 = $phone_start1 + 5
+		set p1 = `echo $word | cut -c$phone_start1-$t`
+		set p2  = `echo $word | cut -c$phone_start1-$t1`
+		set p3  = `echo $word | cut -c$phone_start1-$t2`
+		set p4  = `echo $word | cut -c$phone_start1-$t3`
+		set p5  = `echo $word | cut -c$phone_start1-$t4`
+		set cou = `cat $2 | grep -w "$p1" | wc -l`
+		set cou1 = `cat $2 | grep -w "$p2" | wc -l`
+		set cou2 = `cat $2 | grep -w "$p3" | wc -l`
+		set cou3 = `cat $2 | grep -w "$p4" | wc -l`
+		set cou4 = `cat $2 | grep -w "$p5" | wc -l`
+		if ($cou4 == 1) then
+                        echo $p5
+        #               echo  " "
+                        @ phone_start1 = $phone_start1 + 6
+		else if ($cou3 == 1) then
+                        echo $p4
+        #               echo  " "
+                        @ phone_start1 = $phone_start1 + 5
+		else if ($cou2 == 1) then
+			echo $p3
+	#		echo  " "
+			@ phone_start1 = $phone_start1 + 4
+                else if ($cou1 == 1) then
+                        echo $p2
+         #              echo  " "
+                        @ phone_start1 = $phone_start1 + 3
+		else if ($cou == 1) then
+                        echo $p1
+	  #             echo  " "
+                        @ phone_start1 = $phone_start1 + 2
+       		else
+			set p1 = `echo $word | cut -c$phone_start1-$phone_start1`
+			if ($p1 == ",") then
+				@ phone_start1++
+			else if ($p1 == ".") then
+				@ phone_start1++
+			else
+				echo $p1
+	#			echo " "
+				@ phone_start1++
+			      endif
+			endif
+		endif
+	end
+	else
+	echo $word
+	endif
+#	echo  "  "
+	@ word_start++
+end

@@ -1,0 +1,22 @@
+#!/bin/tcsh -f
+
+if ($# != 2) then
+	echo "arg1 - file.txt"
+	echo "arg2 - hindi_map"
+	exit(-1)
+endif
+tr -s '[:blank:]' '0' <$1 >data/word_out
+set start = 1
+set count = `cat data/word_out |wc -l`
+echo "sil" >data/temp.lab
+while ($start <= $count)
+	set phn1 = `cat data/word_out |head -$start |tail -1`
+	#echo $phn1
+	set phn = `grep -w $phn1 $2`
+	echo $phn >>data/out1
+	@ start++
+end
+cat data/out1 | cut -d " " -f2 >>data/temp.lab
+echo "sil" >>data/temp.lab
+sed -i 's/0/sil/' data/temp.lab #replace 0 to sil
+	

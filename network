@@ -1,0 +1,144 @@
+VERSION=1.0
+N=49   L=93   
+I=0    W=!NULL               
+I=1    W=!NULL               
+I=2    W=a                   
+I=3    W=!NULL               
+I=4    W=aa                  
+I=5    W=ae                  
+I=6    W=ah                  
+I=7    W=ao                  
+I=8    W=ar                  
+I=9    W=aw                  
+I=10   W=ay                  
+I=11   W=b                   
+I=12   W=ch                  
+I=13   W=d                   
+I=14   W=dh                  
+I=15   W=eh                  
+I=16   W=el                  
+I=17   W=em                  
+I=18   W=en                  
+I=19   W=eng                 
+I=20   W=er                  
+I=21   W=ey                  
+I=22   W=f                   
+I=23   W=g                   
+I=24   W=h                   
+I=25   W=i                   
+I=26   W=ih                  
+I=27   W=iy                  
+I=28   W=jh                  
+I=29   W=k                   
+I=30   W=l                   
+I=31   W=m                   
+I=32   W=n                   
+I=33   W=ng                  
+I=34   W=ow                  
+I=35   W=oy                  
+I=36   W=p                   
+I=37   W=r                   
+I=38   W=s                   
+I=39   W=sh                  
+I=40   W=sil                 
+I=41   W=t                   
+I=42   W=th                  
+I=43   W=u                   
+I=44   W=v                   
+I=45   W=w                   
+I=46   W=y                   
+I=47   W=z                   
+I=48   W=zh                  
+J=0     S=3    E=1    
+J=1     S=0    E=2    
+J=2     S=2    E=3    
+J=3     S=4    E=3    
+J=4     S=5    E=3    
+J=5     S=6    E=3    
+J=6     S=7    E=3    
+J=7     S=8    E=3    
+J=8     S=9    E=3    
+J=9     S=10   E=3    
+J=10    S=11   E=3    
+J=11    S=12   E=3    
+J=12    S=13   E=3    
+J=13    S=14   E=3    
+J=14    S=15   E=3    
+J=15    S=16   E=3    
+J=16    S=17   E=3    
+J=17    S=18   E=3    
+J=18    S=19   E=3    
+J=19    S=20   E=3    
+J=20    S=21   E=3    
+J=21    S=22   E=3    
+J=22    S=23   E=3    
+J=23    S=24   E=3    
+J=24    S=25   E=3    
+J=25    S=26   E=3    
+J=26    S=27   E=3    
+J=27    S=28   E=3    
+J=28    S=29   E=3    
+J=29    S=30   E=3    
+J=30    S=31   E=3    
+J=31    S=32   E=3    
+J=32    S=33   E=3    
+J=33    S=34   E=3    
+J=34    S=35   E=3    
+J=35    S=36   E=3    
+J=36    S=37   E=3    
+J=37    S=38   E=3    
+J=38    S=39   E=3    
+J=39    S=40   E=3    
+J=40    S=41   E=3    
+J=41    S=42   E=3    
+J=42    S=43   E=3    
+J=43    S=44   E=3    
+J=44    S=45   E=3    
+J=45    S=46   E=3    
+J=46    S=47   E=3    
+J=47    S=48   E=3    
+J=48    S=0    E=4    
+J=49    S=0    E=5    
+J=50    S=0    E=6    
+J=51    S=0    E=7    
+J=52    S=0    E=8    
+J=53    S=0    E=9    
+J=54    S=0    E=10   
+J=55    S=0    E=11   
+J=56    S=0    E=12   
+J=57    S=0    E=13   
+J=58    S=0    E=14   
+J=59    S=0    E=15   
+J=60    S=0    E=16   
+J=61    S=0    E=17   
+J=62    S=0    E=18   
+J=63    S=0    E=19   
+J=64    S=0    E=20   
+J=65    S=0    E=21   
+J=66    S=0    E=22   
+J=67    S=0    E=23   
+J=68    S=0    E=24   
+J=69    S=0    E=25   
+J=70    S=0    E=26   
+J=71    S=0    E=27   
+J=72    S=0    E=28   
+J=73    S=0    E=29   
+J=74    S=0    E=30   
+J=75    S=0    E=31   
+J=76    S=0    E=32   
+J=77    S=0    E=33   
+J=78    S=0    E=34   
+J=79    S=0    E=35   
+J=80    S=0    E=36   
+J=81    S=0    E=37   
+J=82    S=0    E=38   
+J=83    S=0    E=39   
+J=84    S=0    E=40   
+J=85    S=0    E=41   
+J=86    S=0    E=42   
+J=87    S=0    E=43   
+J=88    S=0    E=44   
+J=89    S=0    E=45   
+J=90    S=0    E=46   
+J=91    S=0    E=47   
+J=92    S=0    E=48   

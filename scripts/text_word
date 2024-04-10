@@ -1,0 +1,22 @@
+#!/bin/tcsh -f
+if ($# != 1) then
+	echo "arg - textfile"
+	exit(-1)
+endif
+
+cd Perl
+rm wordpronunciation
+rm rag_pho
+cd ..
+set num_words = `cat $1 |wc -w`
+
+set word_start = 1
+while ($word_start <= $num_words)
+	set word = `cat $1 | cut -d " " -f$word_start`
+	#echo $word
+	cd Perl
+	perl parser.pl $word
+	cd ..
+
+@ word_start++
+end

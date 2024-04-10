@@ -1,0 +1,95 @@
+#!/bin/tcsh -f
+
+if ($# != 3) then
+	echo "Arg1 --> word.lab"
+	echo "Arg2 --> c_list"
+	echo "Arg3 --> v_list"
+	exit(-1)
+endif
+
+set num_ch = `cat $1 |wc -w`
+set st = 1
+
+while ($st <= $num_ch)
+	set ch1 = `cat $1 |head -$st |tail -1`
+	#echo $ch1
+	@ st1 = $st + 1
+     	set ch2 = `cat $1 |head -$st1 |tail -1`
+	#echo $ch2
+	@ st2 = $st + 2
+      	set ch3 = `cat $1 |head -$st2 |tail -1`
+	#echo $ch3
+	@ st3 = $st + 3
+      	set ch4 = `cat $1 |head -$st3 |tail -1`
+	#echo $ch4
+	@ st4 = $st + 4
+     	set ch5 = `cat $1 |head -$st4 |tail -1`
+	#echo $ch4
+	@ st5 = $st + 5
+      	set ch6 = `cat $1 |head -$st5 |tail -1`
+	#echo $ch6
+	@ st6 = $st + 6
+      	set ch7 = `cat $1 |head -$st6 |tail -1`
+	#echo $ch7
+	set a1 = 0
+	set a2 = 0
+	set a3 = 0
+	set a4 = 0
+	set a5 = 0
+	set a6 = 0
+	set a7 = 0
+	set a8 = 0
+	set a9 = 0
+	set a10 = 0
+	set a1 = `grep -w $ch1 $2 |wc -l`	# Checks 2nd char is mei
+	set a2 = `grep -w $ch1 $3 |wc -l`	# Checks 2nd char is mei
+	set a3 = `grep -w $ch2 $2 |wc -l`	# Checks 2nd char is mei	
+	set a4 = `grep -w $ch2 $3 |wc -l`	# Checks 3rd char is mei
+	set a5 = `grep -w $ch3 $2 |wc -l`	# Checks 2nd char is uyirmei
+	set a6 = `grep -w $ch3 $3 |wc -l`	# Checks 3rd char is uyirmei
+	set a7 = `grep -w $ch4 $2 |wc -l`	# Checks 4th char is mei
+	set a8 = `grep -w $ch4 $3 |wc -l`	# Checks 5th char is mei
+	set a9 = `grep -w $ch5 $2 |wc -l`	# Checks 5th char is mei
+	set a10 = `grep -w $ch5 $3 |wc -l`	# Checks 5th char is mei	
+		#if (($ch7 == 0 && $ch6 != 0 && $ch5 != 0 && $ch4 != 0 && $ch3 != 0 && $ch2 != 0 && $ch1 != 0) && ($st <= $num_ch - 6)) then
+			#echo $ch1$ch2$ch3$ch4$ch5$ch6
+		#	@ st = $st + 6
+		if (($ch6 == 0 && $ch5 != 0 && $ch4 != 0 && $ch3 != 0 && $ch2 != 0 && $ch1 != 0) && ($st <= $num_ch - 5)) then
+			#echo $ch1$ch2$ch3$ch4$ch5
+			if ($a1 == 1 && $a3 == 1 && $a6 == 1 && $a7 == 1 && $a10 == 1) then
+				echo $ch1 $ch2 $ch3 $ch4 $ch5
+			endif
+			@ st = $st + 5
+		else if (($ch5 == 0 && $ch4 != 0 && $ch3 != 0 && $ch2 != 0 && $ch1 != 0) && ($st <= $num_ch - 4)) then
+			#echo $ch1 $ch2 $ch3 $ch4
+			if ($a1 == 1 && $a4 == 1 && $a5 == 1 && $a7 == 1) then
+				echo $ch1 $ch2 $ch4
+			else if ($a1 == 1 && $a4 == 1 && $a5 == 1 && $a8 == 1) then
+				echo $ch1 $ch2 $ch3 $ch4
+			endif
+			@ st = $st + 4
+		else if (($ch4 == 0 && $ch3 != 0 && $ch2 != 0 && $ch1 != 0) && ($st <= $num_ch - 3)) then
+			#echo $ch1 $ch2 $ch3 
+			if ($a1 == 1 && $a4 == 1 && $a5 == 1) then
+				echo $ch1 $ch2 $ch3
+			endif
+			@ st = $st + 3
+		else if (($ch3 == 0 && $ch2 != 0 && $ch1 != 0) && ($st <= $num_ch - 2)) then
+			#echo $ch1 $ch2 >>data/word1
+			if ($a1 == 1 && $a4 == 1) then
+				echo $ch1 $ch2
+			else if ($a2 == 1 && $a3 == 1) then
+				echo  $ch1 $ch2
+			endif
+			@ st = $st + 2
+		else if (($ch2 == 0 && $ch1 != 0) && ($st <= $num_ch - 1)) then
+			echo $ch1 
+		#else
+			#echo $ch1 
+		endif
+	@ st++
+end
+paste data/word data/word1 >>data/word2
+cp -R data/temp.rec data/temp_word.lab
+HLEd data/word2 data/temp_word.lab
+

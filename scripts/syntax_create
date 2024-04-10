@@ -1,0 +1,17 @@
+#!/bin/tcsh -f
+if($# != 1) then
+        echo "argument 1 = word_list"
+		exit(-1)
+endif
+
+set i = 1
+set lines = `cat $1 | wc -l`
+echo "(" >> data/word_syntax
+while ($i <= $lines)
+	set a = `cat $1 | head -$i | tail -1`
+	echo $a "|" >> data/word_syntax
+
+@ i++ 
+end
+echo ")" >> data/word_syntax
+

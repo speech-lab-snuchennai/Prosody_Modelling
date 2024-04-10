@@ -1,0 +1,105 @@
+#!/bin/tcsh -f
+
+if ($# != 2) then	
+       echo "   Argument1 --> phonetic file"
+	echo "   Argument2 --> vowel_list"
+       exit(-1)
+endif
+
+#cat $1 | cut -d " " -f1 > start_samples
+#cat $1 | cut -d " " -f2 > end_samples
+cat $1 | cut -d " " -f3  > phones_alone
+
+set num_phones = `cat phones_alone |wc -w`
+set num_vowels = `cat $2 |wc -l`
+
+set phone_start = 1
+while ($phone_start <= $num_phones)
+	set fl = 0
+	set flg = 0
+	set phone = `cat phones_alone | head -$phone_start | tail -1`
+	#set ss = `cat start_samples | head -$phone_start | tail -1`
+	#set es = `cat end_samples | head -$phone_start | tail -1`
+	if ($phone != sil) then
+		set fl = `grep -w $phone $2 |wc -l`
+			if ($fl == 1) then
+			@ tp1 = $phone_start + 1
+			@ tp2 = $phone_start + 2
+			set p1 = `cat phones_alone | head -$tp1 | tail -1`
+			#set ss1 = `cat start_samples | head -$tp1 | tail -1`
+        		#set es1 = `cat end_samples | head -$tp1 | tail -1`
+			
+			set p2 = `cat phones_alone | head -$tp2 | tail -1`
+			#set ss2 = `cat start_samples | head -$tp2 | tail -1`
+        		#set es2 = `cat end_samples | head -$tp2 | tail -1`
+			if ($p2 == sil) then
+				echo ME $phone$p1 $phone $p1 >>file1
+                                @ phone_start = $phone_start + 2
+			else 
+				set flg = `grep -w $p2 $2 | wc -l`
+				if ($flg == 1) then
+					echo RE $phone $phone >>file1
+					@ phone_start++
+				else
+					echo ME $phone$p1 $phone $p1 >>file1
+					@ phone_start = $phone_start + 2
+				endif
+			endif
+		else
+			@ tp1 = $phone_start + 1
+			@ tp2 = $phone_start + 2
+                	@ tp3 = $phone_start + 3
+			set p1 = `cat phones_alone | head -$tp1 | tail -1`
+                        #set ss1 = `cat start_samples | head -$tp1 | tail -1`
+                        #set es1 = `cat end_samples | head -$tp1 | tail -1`
+
+                	set p2 = `cat phones_alone | head -$tp2 | tail -1`
+                        #set ss2 = `cat start_samples | head -$tp2 | tail -1`
+                        #set es2 = `cat end_samples | head -$tp2 | tail -1`
+
+			set p3 = `cat phones_alone | head -$tp3 | tail -1`
+                        #set ss3 = `cat start_samples | head -$tp3 | tail -1`
+                        #set es3 = `cat end_samples | head -$tp3 | tail -1`
+
+			if ($p2 == sil) then
+				echo ME $phone$p1 $phone $p1 >>file1
+				@ phone_start = $phone_start + 2
+			else
+				if ($p3 == sil) then
+					echo ME $phone$p1$p2 $phone $p1 $p2 >>file1
+                                	@ phone_start = $phone_start + 3
+				else
+					set flg = `grep -w $p3 $2 | wc -l`
+					if ($flg == 1) then
+						echo ME $phone$p1 $phone $p1 >>file1
+						@ phone_start = $phone_start + 2
+					else
+						@ tp4 = $phone_start + 4
+						set p4 = `cat phones_alone | head -$tp4 | tail -1`
+						if ($p4 == sil) then					
+							echo ME $phone$p1$p2$p3 $phone $p1 $p2 $p3 >>file1
+							@ phone_start = $phone_start + 4
+						else
+							echo ME $phone$p1$p2 $phone $p1 $p2 >>file1
+							@ phone_start = $phone_start + 3
+						endif
+					endif
+				endif
+			endif
+		endif
+	else
+		@ tp1 = $phone_start + 1
+		set p1 = `cat phones_alone | head -$tp1 | tail -1`
+		#set es1 = `cat end_samples | head -$tp1 | tail -1`
+		if ($p1 == sil) then
+			echo RE $phone $phone >>file1
+			@ phone_start = $phone_start + 2
+		else 
+			echo RE $phone $phone >>file1
+			@ phone_start++
+		endif
+	endif
+end
+cp $1 data/temp_syl.lab
+HLEd file1 data/temp_syl.lab
+rm -f file1 phones_alone		

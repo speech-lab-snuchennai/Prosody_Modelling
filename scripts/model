@@ -1,0 +1,40 @@
+#!/bin/tcsh -f
+
+if($# != 1) then 
+	echo "argument 1 = mix_state_list"
+	exit(-1)
+endif
+rm -r hmm
+rm header
+rm footer
+set i = 1
+set lines = `cat $1 | wc -l`
+mkdir hmm
+mkdir hmm/re-estimated
+
+while($i <= $lines)
+	set word = `cat $1 | head -$i | tail -1 | cut -d " " -f1`
+	set mix =  `cat $1 | head -$i | tail -1 | cut -d " " -f2`
+	set state = `cat $1 | head -$i | tail -1 | cut -d " " -f3`
+        
+	HInit -C config_files/feature_config_file -X lab -S data/train_featurelist -M hmm/ -l $word protos/proto_{$state}s_{$mix}m
+
+
+	#mv protos/proto_{$state}s_{$mix}m hmm/proto_{$state}s_{$mix}m 
+	
+	head -3 hmm/proto_{$state}s_{$mix}m > header
+	tail -n +5 hmm/proto_{$state}s_{$mix}m > footer
+	cat header > hmm/$word
+	echo \~h \"$word\" >> hmm/$word
+	cat footer >> hmm/$word
+			
+#	rename 's/proto_'$state's_'$mix'm/'$word'/' hmm/*
+
+
+#	replace proto_{$state}s_{$mix}m $word -- hmm/$word         
+	
+	HRest -C config_files/feature_config_file -X lab -S data/train_featurelist -M hmm/re-estimated/ -l $word hmm/$word
+echo $word model is trained
+
+	@ i++
+end
