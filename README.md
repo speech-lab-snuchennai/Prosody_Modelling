@@ -21,7 +21,7 @@ cd project-name
 ### Installing Dependencies
 
 ```bash
-https://github.com/speech-lab-snuchennai/Prosody_Modelling
+pip install -r requirements.txt
 ```
 
 ### Usage
