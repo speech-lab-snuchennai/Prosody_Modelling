@@ -1,0 +1,19 @@
+#!/bin/tcsh -f
+
+if($# != 1) then
+        echo "argument 1 = tem.lab"
+        exit(-1)
+endif
+ 
+set i = 1
+set tot = `cat $1 | wc -l`
+while ($i <= $tot)
+
+	set a = `cat $1 | head -$i | tail -1`
+	if ($a == 'e') then
+		echo $a
+		
+	endif
+
+@ i++
+end
