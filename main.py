@@ -65,14 +65,14 @@ def full_code(filename, language):
         }
         response = requests.post('https://asr.iitm.ac.in/api/asr/', files=files,
                                  headers=headersList)
-        text = response.json().get("transcript")
-        print(text)
-        outf = open("text.txt", "w")
-        for lines in text:
-            outf.write(lines)
+        #text = response.json().get("transcript")
+        #print(text)
+        #outf = open("text.txt", "w")
+        #for lines in text:
+            #outf.write(lines)
             # outf.write("\n")
-        outf.close()
-        os.system("tr -d '[:punct:]' <text.txt >temp.txt")
+        #outf.close()
+        os.system("tr -d '[:punct:]' <te.txt >temp.txt")
         ###############################################################################
         ###############################################################################
         #####################PHONEME SEGMENTATION######################################
@@ -146,12 +146,12 @@ def full_code(filename, language):
         }
         response = requests.post('https://asr.iitm.ac.in/api/asr/', files=files,
                                  headers=headersList)
-        text = response.json().get("transcript")
-        print(text)
-        outf = open("te.txt", "w")
-        for lines in text:
-            outf.write(lines)
-        outf.close()
+        #text = response.json().get("transcript")
+        #print(text)
+        #outf = open("te.txt", "w")
+        #for lines in text:
+            #outf.write(lines)
+        #outf.close()
         os.system("tr -d '[:punct:]' <te.txt >t.txt")
         ###############################################################################
         ###############################################################################
@@ -230,12 +230,12 @@ def full_code(filename, language):
         }
         response = requests.post('https://asr.iitm.ac.in/api/asr/', files=files,
                                  headers=headersList)
-        text = response.json().get("transcript")
-        print(text)
-        outf = open("te.txt", "w")
-        for lines in text:
-            outf.write(lines)
-        outf.close()
+        #text = response.json().get("transcript")
+        #print(text)
+        #outf = open("te.txt", "w")
+        #for lines in text:
+            #outf.write(lines)
+        #outf.close()
         os.system("tr -d '[:punct:]' <te.txt >temp.txt")
 
         ###############################################################################
@@ -1464,7 +1464,7 @@ def full_code(filename, language):
                     elif int(a[2]) > int(a[3]) and 60 <= ff1 < 100:
                         if int(a[2]) <= 2:
                             st1 = i
-                            et1 = j
+                            et1 = jspeech-lab-snuchennai
                             x1 = j 
                             y1 = pitchEn.ceiling / 4
                             # axs[2].plot([i for i in range(len(yin_smooth))], yin_smooth)
@@ -2334,7 +2334,7 @@ def full_code(filename, language):
 # return jsonify(json_data)
 token = "1e0a93be5b86ed90c160f0a54a506b5a58ac3f87f4f744010b8f0d2cf838eae5"
 # filename = sys.argv[1]
-filename = '/media/speechlab/Expansion/hindi_fem_wav/text_01007.wav'
+filename = '/home/speechlab/Downloads/Prosody_Modelling-main/example/a0033.wav'
 # filename = '/media/speechlab/Expansion/hindi_male_mono/wav/male_01009.wav'
-language = "Hindi"
+language = "English"
 full_code(filename, language)

@@ -31,15 +31,8 @@ python main.py
 
 ```
 
-### Contributors
+### INPUT
 
- Project Officers
-
-- [Preethi T](mailto:preethit@snuchennai.edu.in)
-- [Sooriya S](mailto:sooriyas@snuchennai.edu.in)
-- [Malarvizhi M](mailto:malarvizhim@snuchennai.edu.in)
-
- Project Intern
-
-- [Adithya V](mailto:adithya21110421@snuchennai.edu.in)
+ Paste the folder path and Language input in "filename" and "language" accordingly in main.py.
+ Give  your input text in "te.txt file" .
 
