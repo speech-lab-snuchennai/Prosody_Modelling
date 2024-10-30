@@ -1,17 +1,26 @@
-#!/bin/tcsh -f
-if($# != 1) then
-        echo "argument 1 = word_list"
+#!/usr/bin/tcsh -f
+if($# != 2) then
+        echo "arguments = wordlist listDir"
 		exit(-1)
 endif
-
+echo "arguments $1 $2"
 set i = 1
+set listDir = $2
 set lines = `cat $1 | wc -l`
-echo "(" >> data/word_syntax
+echo "$lines"
+rm $listDir/word_syntax
+
+echo "(" >> $listDir/word_syntax
 while ($i <= $lines)
 	set a = `cat $1 | head -$i | tail -1`
-	echo $a "|" >> data/word_syntax
+	echo $a "|" >> $listDir/word_syntax
+	echo $a
 
 @ i++ 
 end
-echo ")" >> data/word_syntax
+echo ")" >> $listDir/word_syntax
+
+cut -f1 -d ' ' $listDir/word_syntax > temp
+mv temp $listDir/word_syntax
+
 
