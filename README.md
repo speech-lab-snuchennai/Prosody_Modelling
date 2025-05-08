@@ -44,6 +44,10 @@ After installing HTK, create a wav folder (containing the audio files in wav for
 ```bash
 ./run.sh
 ```
+## Demo
+
+🌐 [Project Demo – SpeechLab, SNU Chennai](https://speech.snuchennai.edu.in/)
+
 
 ## License
 
