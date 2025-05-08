@@ -45,4 +45,14 @@ After installing HTK, create a wav folder (containing the audio files in wav for
 ./run.sh
 ```
 
+## License
+
+If you use these Prosody Modeling features in your research or work, please consider citing:
+
+📄 [Read our paper on arXiv](https://arxiv.org/pdf/2502.09661)
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).  
+© 2024–2026 SpeechLab, SNU Chennai
 
