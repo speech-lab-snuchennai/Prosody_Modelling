@@ -38,31 +38,31 @@ while ($word_start <= $num_words)
 		set cou4 = `cat $2 | grep -w "$p5" | wc -l`
 		if ($cou4 == 1) then
                         echo $p5 >data/t
-                        set out = `./scripts/ortho_to_phonetic1_HIN data/t phonelist_hindi`
+                        set out = `./scripts/ortho_to_phonetic1_HIN data/t dep_list/phonelist_hindi`
                         echo ME $p5 $out
         #               echo  " "
                         @ phone_start1 = $phone_start1 + 6
 		else if ($cou3 == 1) then
                         echo $p4 >data/t
-                        set out = `./scripts/ortho_to_phonetic1_HIN data/t phonelist_hindi`
+                        set out = `./scripts/ortho_to_phonetic1_HIN data/t dep_list/phonelist_hindi`
                         echo ME $p4 $out
         #               echo  " "
                         @ phone_start1 = $phone_start1 + 5
 		else if ($cou2 == 1) then
 			echo $p3 >data/t
-			set out = `./scripts/ortho_to_phonetic1_HIN data/t phonelist_hindi`
+			set out = `./scripts/ortho_to_phonetic1_HIN data/t dep_list/phonelist_hindi`
                        echo ME $p3 $out
 	#		echo  " "
 			@ phone_start1 = $phone_start1 + 4
                 else if ($cou1 == 1) then
                         echo $p2 >data/t
-                        set out = `./scripts/ortho_to_phonetic1_HIN data/t phonelist_hindi`
+                        set out = `./scripts/ortho_to_phonetic1_HIN data/t dep_list/phonelist_hindi`
                         echo ME $p2 $out
          #              echo  " "
                         @ phone_start1 = $phone_start1 + 3
 		else if ($cou == 1) then
                         echo $p1 >data/t
-                        set out = `./scripts/ortho_to_phonetic1_HIN data/t phonelist_hindi`
+                        set out = `./scripts/ortho_to_phonetic1_HIN data/t dep_list/phonelist_hindi`
                         echo ME $p1 $out
 	  #             echo  " "
                         @ phone_start1 = $phone_start1 + 2
@@ -74,7 +74,7 @@ while ($word_start <= $num_words)
 				@ phone_start1++
 			else
 				echo $p1 >data/t
-				set out = `./scripts/ortho_to_phonetic1_HIN data/t phonelist_hindi`
+				set out = `./scripts/ortho_to_phonetic1_HIN data/t dep_list/phonelist_hindi`
                         	echo ME $p1 $out
 	#			echo " "
 				@ phone_start1++

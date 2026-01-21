@@ -11,6 +11,7 @@ The performance of the various modules of the tool is evaluated by comparing ann
 ![image](https://github.com/speech-lab-snuchennai/Prosody_Modelling/assets/166628077/49e824d9-04de-4795-94e0-d29f8b617956)
 
 ---
+
 ## Installation
 
 To use this project, you will need to clone the repository and install the required dependencies as follows:
@@ -21,6 +22,7 @@ To use this project, you will need to clone the repository and install the requi
 git clone https://github.com/speech-lab-snuchennai/Prosody_Modelling
 cd project-name
 ```
+
 ### Installing Dependencies
 
 ```bash
@@ -44,10 +46,10 @@ After installing HTK, create a wav folder (containing the audio files in wav for
 ```bash
 ./run.sh
 ```
+
 ## Demo
 
 🌐 [Project Demo – SpeechLab, SNU Chennai](https://speech.snuchennai.edu.in/)
-
 
 ## License
 
@@ -57,6 +59,5 @@ If you use these Prosody Modeling features in your research or work, please cons
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).  
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 © 2024–2026 SpeechLab, SNU Chennai
-

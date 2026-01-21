@@ -17,9 +17,13 @@ while ($st <= $num_ch)
 	#echo $end_samples
 	set ch = `echo $line | cut -d " " -f3`
 	#echo $ch
-	if (($ch != SIL) && ($st <= $num_ch - 1)) then
+	if (($ch != SIL) && ($st <= $num_ch - 1)) then 
 		echo $start_samples $end_samples $ch >>data/temp_syl_syl.lab
 	endif
+	########for without parser
+	#if (($ch != SIL) && ($st <= $num_ch )) then
+		#echo $start_samples $end_samples $ch >>data/temp_syl_syl.lab
+	#endif
 	@ st++
 
 end

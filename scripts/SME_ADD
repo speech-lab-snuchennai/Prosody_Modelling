@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Check if the input file is provided as argument
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <input_file> <output_file>"
+    exit 1
+fi
+
+# Input and output files provided as arguments
+input_file="$1"
+output_file="$2"
+
+# Check if the input file exists
+if [ ! -f "$input_file" ]; then
+    echo "Input file $input_file does not exist."
+    exit 1
+fi
+
+# Initialize variables to store the accumulated weightage values
+group_sum=0
+line_count=0
+
+# Read the input file line by line
+while IFS= read -r line; do
+    # Extract weightage value from the line
+    weightage=$(echo "$line" | awk -F ', Weightage Value: ' '{print $2}')
+    
+    # Accumulate weightage values for each group
+    group_sum=$(awk "BEGIN {print $group_sum + $weightage}")
+    
+    # Increment line count
+    ((line_count++))
+
+    # If line count reaches a multiple of 3, print the sum and reset the variables
+    if [ $((line_count % 3)) -eq 0 ]; then
+        echo "Sum of Group $((line_count / 3)): $group_sum" >> "$output_file"
+        # Reset variables
+        group_sum=0
+    fi
+done < "$input_file"
+

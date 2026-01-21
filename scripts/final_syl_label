@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Check if two input files are provided as arguments
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <input_file1> <input_file2>"
+    exit 1
+fi
+
+# Input files provided as arguments
+file1="$1"
+file2="$2"
+
+# Check if the input files exist
+if [ ! -f "$file1" ]; then
+    echo "Input file $file1 does not exist."
+    exit 1
+fi
+
+if [ ! -f "$file2" ]; then
+    echo "Input file $file2 does not exist."
+    exit 1
+fi
+
+# Define output file
+output_file="data/output.txt"
+
+# Use awk to compare files and extract matching lines, and save to output file
+awk 'NR==FNR {a[sprintf("%.1f %.1f", $1, $2)]=$3" "$4; next} (sprintf("%.1f %.1f", $1, $2) in a) {print $1, $2, $3, a[sprintf("%.1f %.1f", $1, $2)]; delete a[sprintf("%.1f %.1f", $1, $2)]} END {for (key in a) print key, "null "a[key]}' "$file1" "$file2" | sed 's/,$//g' > "$output_file"
+
+# Notify user
+echo "Output saved to $output_file"
+

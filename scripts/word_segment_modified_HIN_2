@@ -1,0 +1,221 @@
+#!/bin/tcsh -f
+
+if ($# != 2) then
+	echo "Arg1 --> temp.rec" #phoneme segmentation rec file having start and end timing
+	echo "Arg2 --> Input_text_file" #Input is text of rec file
+	exit(-1)
+endif
+set num_words = `cat $2 |wc -w`
+
+set word_start = 1
+#echo "sil" >data/word
+while ($word_start <= $num_words)
+	set word = `cat $2 | cut -d " " -f$word_start`
+	echo $word >>data/word
+	@ word_start++
+end            # Word segmentation adding sil in first row
+
+
+set num_ch = `cat $1 |wc -l`
+set st = 1
+
+while ($st <= $num_ch)
+	set line = `cat $1 |head -$st |tail -1`
+	#echo $line
+	set start_samples = `echo $line | cut -d " " -f1`
+	#echo $start_samples
+	set end_samples = `echo $line | cut -d " " -f2`
+	#echo $end_samples
+	set ch = `echo $line | cut -d " " -f3`
+	#echo $ch1
+	
+	@ st1 = $st + 1
+	set line1 = `cat $1 |head -$st1 |tail -1`
+	#echo $line1
+	set start_samples1 = `echo $line1 | cut -d " " -f1`
+	#echo $start_samples1
+	set end_samples1 = `echo $line1 | cut -d " " -f2`
+	#echo $end_samples1
+	set ch1 = `echo $line1 | cut -d " " -f3`
+	#echo $ch1
+	
+	@ st2 = $st + 2
+	set line2 = `cat $1 |head -$st2 |tail -1`
+	#echo $line2
+	set start_samples2 = `echo $line2 | cut -d " " -f1`
+	#echo $start_samples2
+	set end_samples2 = `echo $line2 | cut -d " " -f2`
+	#echo $end_samples2
+	set ch2 = `echo $line2 | cut -d " " -f3`
+	#echo $ch2
+	
+	@ st3 = $st + 3
+	set line3 = `cat $1 |head -$st3 |tail -1`
+	#echo $line3
+	set start_samples3 = `echo $line3 | cut -d " " -f1`
+	#echo $start_samples3
+	set end_samples3 = `echo $line3 | cut -d " " -f2`
+	#echo $end_samples3
+	set ch3 = `echo $line3 | cut -d " " -f3`
+	#echo $ch3
+	
+	@ st4 = $st + 4
+	set line4 = `cat $1 |head -$st4 |tail -1`
+	#echo $line4
+	set start_samples4 = `echo $line4 | cut -d " " -f1`
+	#echo $start_samples4
+	set end_samples4 = `echo $line4 | cut -d " " -f2`
+	#echo $end_samples4
+	set ch4 = `echo $line4 | cut -d " " -f3`
+	#echo $ch4
+	
+	@ st5 = $st + 5
+	set line5 = `cat $1 |head -$st5 |tail -1`
+	#echo $line5
+	set start_samples5 = `echo $line5 | cut -d " " -f1`
+	#echo $start_samples5
+	set end_samples5 = `echo $line5 | cut -d " " -f2`
+	#echo $end_samples5
+	set ch5 = `echo $line5 | cut -d " " -f3`
+	#echo $ch5
+	
+	@ st6 = $st + 6
+	set line6 = `cat $1 |head -$st6 |tail -1`
+	#echo $line6
+	set start_samples6 = `echo $line6 | cut -d " " -f1`
+	#echo $start_samples6
+	set end_samples6 = `echo $line6 | cut -d " " -f2`
+	#echo $end_samples6
+	set ch6 = `echo $line6 | cut -d " " -f3`
+	#echo $ch6
+	
+	@ st7 = $st + 7
+	set line7 = `cat $1 |head -$st7 |tail -1`
+	#echo $line7
+	set start_samples7 = `echo $line7 | cut -d " " -f1`
+	#echo $start_samples7
+	set end_samples7 = `echo $line7 | cut -d " " -f2`
+	#echo $end_samples7
+	set ch7 = `echo $line7 | cut -d " " -f3`
+	#echo $ch7	
+
+	@ st8 = $st + 8
+	set line8 = `cat $1 |head -$st8 |tail -1`
+	#echo $line8
+	set start_samples8 = `echo $line8 | cut -d " " -f1`
+	#echo $start_samples8
+	set end_samples8 = `echo $line8 | cut -d " " -f2`
+	#echo $end_samples8
+	set ch8 = `echo $line8 | cut -d " " -f3`
+	#echo $ch8	
+
+	@ st9 = $st + 9
+	set line9 = `cat $1 |head -$st9 |tail -1`
+	#echo $line9
+	set start_samples9 = `echo $line9 | cut -d " " -f1`
+	#echo $start_samples9
+	set end_samples9 = `echo $line9 | cut -d " " -f2`
+	#echo $end_samples9
+	set ch9 = `echo $line9 | cut -d " " -f3`
+	#echo $ch9
+
+	@ st10 = $st + 10
+	set line10 = `cat $1 |head -$st10 |tail -1`
+	#echo $line10
+	set start_samples10 = `echo $line10 | cut -d " " -f1`
+	#echo $start_samples10
+	set end_samples10 = `echo $line10 | cut -d " " -f2`
+	#echo $end_samples10
+	set ch10 = `echo $line10 | cut -d " " -f3`
+	#echo $ch10
+
+	@ st11 = $st + 11
+	set line11 = `cat $1 |head -$st11 |tail -1`
+	#echo $line11
+	set start_samples11 = `echo $line11 | cut -d " " -f1`
+	#echo $start_samples11
+	set end_samples11 = `echo $line11 | cut -d " " -f2`
+	#echo $end_samples11
+	set ch11 = `echo $line11 | cut -d " " -f3`
+	#echo $ch11
+
+	@ st12 = $st + 12
+	set line12 = `cat $1 |head -$st12 |tail -1`
+	#echo $line12
+	set start_samples12 = `echo $line12 | cut -d " " -f1`
+	#echo $start_samples12
+	set end_samples12 = `echo $line12 | cut -d " " -f2`
+	#echo $end_samples12
+	set ch12 = `echo $line12 | cut -d " " -f3`
+	#echo $ch12
+	if (($ch12 == SIL && $ch11 != SIL && $ch10 != SIL && $ch9 != SIL && $ch8 != SIL && $ch7 != SIL && $ch6 != SIL && $ch5 != SIL && $ch4 != SIL && $ch3 != SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 11)) then
+		#echo $start_samples $end_samples11 $ch$ch1$ch2$ch3$ch4$ch5$ch6$ch7$ch8$ch9$ch10$ch11 >>data/word1
+		@ st = $st + 11
+	else if (($ch11 == SIL && $ch10 != SIL && $ch9 != SIL && $ch8 != SIL && $ch7 != SIL && $ch6 != SIL && $ch5 != SIL && $ch4 != SIL && $ch3 != SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 11)) then
+		#echo $start_samples $end_samples10 $ch$ch1$ch2$ch3$ch4$ch5$ch6$ch7$ch8$ch9$ch10 >>data/word1
+		@ st = $st + 11
+	else if (($ch10 == SIL && $ch9 != SIL && $ch8 != SIL && $ch7 != SIL && $ch6 != SIL && $ch5 != SIL && $ch4 != SIL && $ch3 != SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 10)) then
+		#echo $start_samples $end_samples9 $ch$ch1$ch2$ch3$ch4$ch5$ch6$ch7$ch8$ch9 >>data/word1
+		@ st = $st + 10
+	else if (($ch9 == SIL && $ch8 != SIL && $ch7 != SIL && $ch6 != SIL && $ch5 != SIL && $ch4 != SIL && $ch3 != SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 9)) then
+		#echo $start_samples $end_samples8 $ch$ch1$ch2$ch3$ch4$ch5$ch6$ch7$ch8 >>data/word1
+		@ st = $st + 9
+	else if (($ch8 == SIL && $ch7 != SIL && $ch6 != SIL && $ch5 != SIL && $ch4 != SIL && $ch3 != SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 8)) then
+		#echo $start_samples $end_samples7 $ch$ch1$ch2$ch3$ch4$ch5$ch6$ch7 >>data/word1
+		@ st = $st + 8
+	else if (($ch7 == SIL && $ch6 != SIL && $ch5 != SIL && $ch4 != SIL && $ch3 != SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 7)) then
+		#echo $start_samples $end_samples6 $ch$ch1$ch2$ch3$ch4$ch5$ch6 >>data/word1
+		@ st = $st + 7
+	else if (($ch6 == SIL && $ch5 != SIL && $ch4 != SIL && $ch3 != SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 6)) then
+		#echo $start_samples $end_samples5 $ch$ch1$ch2$ch3$ch4$ch5 >>data/word1
+		@ st = $st + 6
+	else if (($ch5 == SIL && $ch4 != SIL && $ch3 != SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 5)) then
+		#echo $start_samples $end_samples4 $ch$ch1$ch2$ch3$ch4 >>data/word1
+		@ st = $st + 5
+	else if (($ch4 == SIL && $ch3 != SIL && $ch2 != SIL&& $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 4)) then
+		#echo $start_samples $end_samples3 $ch$ch1$ch2$ch3 >>data/word1
+		@ st = $st + 4
+	else if (($ch3 == SIL && $ch2 != SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 3)) then
+		echo $start_samples $end_samples2 $ch$ch1$ch2 >>data/word1
+		@ st = $st + 3
+	else if (($ch2 == SIL && $ch1 != SIL && $ch != SIL) && ($st <= $num_ch - 2)) then
+		echo $start_samples $end_samples1 $ch $ch1 >>data/word1
+		echo $start_samples $end_samples $ch  >>data/word9
+		echo $start_samples1 $end_samples1 $ch1  >>data/word9
+		@ st = $st + 2
+	else if (($ch1 == SIL && $ch != SIL) && ($st <= $num_ch - 1)) then
+		#echo $start_samples $end_samples $ch >>data/word1
+		#echo $start_samples $end_samples $ch >>data/word10
+	#else
+		#echo $start_samples $end_samples $ch >>data/word1
+	#else if ($ch == SIL) then
+		#echo $start_samples $end_samples $ch
+	#else if ($ch == SIL && $ch1 != SIL) then
+		#echo $start_samples $end_samples $ch
+	endif
+	@ st++
+end
+#paste data/word data/word1 >>data/word2
+#cp -R data/temp.rec data/temp_word.lab
+#HLEd data/word2 data/temp_word.lab
+#cat data/word1 | cut -d " " -f3 >>data/word2
+paste data/word1 data/word >>data/word2
+set num_ch1 = `cat data/word2 |wc -l`
+set start = 1
+while ($start <= $num_ch1)
+	set line_word = `cat data/word2 |head -$start |tail -1`
+	#echo $line
+	set start_samples_word = `echo $line_word | cut -d " " -f1`
+	#echo $start_samples
+	set end_samples_word = `echo $line_word | cut -d " " -f2`
+	#echo $end_samples
+	set chg_word = `echo $line_word | cut -d " " -f3`
+	#echo $ch1
+	set ori_word = `echo $line_word | cut -d " " -f4`
+	#echo $ch1
+	#set phn = `grep -w $chg_word $ori_word`
+	echo $start_samples_word $end_samples_word $ori_word >>data/temp_word.lab
+	@ start++
+end
+	
+
