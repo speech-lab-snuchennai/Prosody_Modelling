@@ -1,3 +1,6 @@
+<!-- The requirements.txt needed to run main.py is in web/requirements.txt file -->
+<!-- use pip install -r web/requirements.txt -->
+
 asttokens==3.0.1
 black==25.12.0
 blinker==1.9.0
@@ -23,7 +26,7 @@ ipython_pygments_lexers==1.1.1
 itsdangerous==2.2.0
 jedi==0.19.2
 Jinja2==3.1.6
-jiwer==4.0.0
+jiwer==4.0.0s
 joblib==1.5.2
 kiwisolver==1.4.9
 MarkupSafe==3.0.3

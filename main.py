@@ -16,9 +16,9 @@ import seaborn as sns
 from g2p_en import G2p
 
 
-def run_lang_all(language, text_file, wave_file):
+def run_lang_all(language, text_file_path, wave_file_path):
     lang = language.lower()
-    with open(text_file.filename, 'r') as f_t:
+    with open(text_file_path, 'r') as f_t:
         text_content = f_t.read()
     with open('te.txt', 'w') as output_file:
         output_file.write(text_content)
@@ -62,22 +62,21 @@ def run_lang_all(language, text_file, wave_file):
     os.system("./scripts/syllable data/temp_syl.lab")
     os.system("./scripts/word_segment_modified data/temp.rec data/temp.txt")
 
-def full_code():
-    if request.method == 'POST':
-        text_file = request.files['text_file']
-        wave_file = request.files['wave_file']
-        text_file.save(text_file.filename)
-        wave_file.save(wave_file.filename)
-        f1 =wave_file.filename.split('\\')
+
+def full_code(text_file_path, wave_file_path, language):
+
+        text_file = text_file_path
+        wave_file = wave_file_path
+
+        f1 = wave_file.split('\\')
         file = f1[-1].split('.')[0]
-        os.system("ch_wave " + wave_file.filename + " -F 16000 -otype wav -o temp.wav")
+
+        os.system("ch_wave " + wave_file + " -F 16000 -otype wav -o temp.wav")
         os.system("ch_wave temp.wav -c 1 -otype wav -o temp.wav")
-        val=request.form.get('languages')
-        language= str(val)
 
         ##########################Speech to Text#######################################
         if language.lower() == 'english':
-            with open(text_file.filename, 'r') as f_t:
+            with open(text_file, 'r') as f_t:
                text_content = f_t.read()
             with open('te.txt', 'w') as output_file:
                output_file.write(text_content)
@@ -126,7 +125,7 @@ def full_code():
             os.system("./scripts/word_segment_modified data/temp.rec data/temp.txt")
 
         elif language.lower() =='tamil':
-           with open(text_file.filename, 'r') as f_t:
+           with open(text_file, 'r') as f_t:
               text_content = f_t.read()
            with open('te.txt', 'w') as output_file:
               output_file.write(text_content)
@@ -163,7 +162,6 @@ def full_code():
            os.system("./scripts/phoneme data/temp.rec")
            ########################SYLLABLE SEGMENTATION##################################
            os.system("tr -d '\n' <data/temp.lab >data/temp")
-           # os.system("sed -i 's/SIL/ /g' data/temp")
            os.system("./scripts/ortho_to_phonetic_cv_tam data/temp dep_list/con_c_v_cv_list_tam >data/t.led")
            os.system("cp data/temp.rec data/temp_syl.lab")
            os.system("HLEd data/t.led data/temp_syl.lab")
@@ -175,7 +173,8 @@ def full_code():
            os.system("./scripts/word_segment_modified_tamil data/temp.rec data/temp.txt")
 
         else:
-            run_lang_all(language,text_file,wave_file)
+            run_lang_all(language, text_file, wave_file)
+
 
         fp = open('data/temp_ph.lab', "r")
         lines = fp.readlines()
@@ -1409,4 +1408,10 @@ def full_code():
         plt.show()
         os.system("rm -f *.wav *.txt *.p *.phn p phn")
 
+if __name__ == "__main__":
+    text_file_path = "input.txt"
+    wave_file_path = "input.wav"
+    language = "english" #or whatever language is being passed
 
+    # running the main function code
+    full_code(text_file_path, wave_file_path, language)

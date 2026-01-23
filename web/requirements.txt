@@ -1,0 +1,8 @@
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+more-itertools
+praat-parselmouth
+g2p-en
