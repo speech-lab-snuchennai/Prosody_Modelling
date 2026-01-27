@@ -1410,7 +1410,7 @@ def full_code(text_file_path, wave_file_path, language):
 
 if __name__ == "__main__":
     text_file_path = "input.txt"
-    wave_file_path = "input.wav"
+    wave_file_path = "voice.wav"
     language = "english" #or whatever language is being passed
 
     # running the main function code
